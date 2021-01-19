@@ -1,11 +1,19 @@
 package com.example.registropersonas.modelo.controlpersonal;
 
+import com.example.registropersonas.modelo.datos.InterfazPersonaDao;
+import com.example.registropersonas.modelo.datos.PersonaDaoImplementacion;
 import com.example.registropersonas.modelo.domain.Persona;
 import com.example.registropersonas.presentador.*;
 
 public class ControlModelo {
 
    private String identificacion, nombres, apellidos, telefono, temperatura, rol;
+   public static final String SOLICITUD_REGISTRAR = "REGISTRAR";
+   public static final String SOLICITUD_ACTUALIZAR = "ACTUALIZAR";
+   public static final String SOLICITUD_CONSULTAR = "CONSULTAR";
+   public static final String SOLICITUD_ELIMINAR = "ELIMINAR";
+   public static final String SOLICITUD_EXITOSA = "SOLICITUD_EXITOSA";
+   public static final String SOLICITUD_FALLIDA = "SOLICITUD_FALLIDA";
 
    public ControlModelo(){
 
@@ -21,47 +29,45 @@ public class ControlModelo {
        this.rol = rol;
    }
 
-   public String[] SolicitudBaseDeDatos(String solicitud){
+   public Persona SolicitudBaseDeDatos(String solicitud){
 
+       InterfazPersonaDao personaDao = new PersonaDaoImplementacion();
        Persona persona = new Persona(identificacion,nombres,apellidos,telefono,temperatura,rol);
-       GestionBaseDeDatos gestionBaseDeDatos = new GestionBaseDeDatos(persona);
-       String[] vectorRespuesta = null;
 
-
-       if(solicitud.equals("REGISTRAR")){
-          boolean status= gestionBaseDeDatos.Registrar();
-          if (status){
-              vectorRespuesta[0] = "REGISTRO EXITOSO";
-          }else {
-              vectorRespuesta[0] = "REGISTRO NO EXITOSO";
-          }
-       }
-       else if(solicitud.equals("ACTUALIZAR")){
-           boolean status= gestionBaseDeDatos.Actualizar();
-           if (status){
-               vectorRespuesta[0] = "ACTUALIZACION EXITOSA";
-           }else {
-               vectorRespuesta[0] = "ACTUALIZACION NO EXITOSA";
+       if(solicitud.equals(SOLICITUD_REGISTRAR)){
+           if(personaDao.registrarPersona(persona)){
+               //Registro Exitoso
+               persona.setIdentificacion(SOLICITUD_EXITOSA);
+           }else{
+               //Registro NO Exitoso
+               persona.setIdentificacion(SOLICITUD_FALLIDA);
            }
        }
-       else if(solicitud.equals("ELIMINAR")){
-           boolean status= gestionBaseDeDatos.Eliminar();
-           if (status){
-               vectorRespuesta[0] = "ACTUALIZACION EXITOSA";
-           }else {
-               vectorRespuesta[0] = "ACTUALIZACION NO EXITOSA";
+       else if(solicitud.equals(SOLICITUD_ACTUALIZAR)){
+           if(personaDao.actualizarPersona(persona)){
+               //Registro Exitoso
+               persona.setIdentificacion(SOLICITUD_EXITOSA);
+           }else{
+               //Registro NO Exitoso
+               persona.setIdentificacion(SOLICITUD_FALLIDA);
            }
        }
-       else if(solicitud.equals("CONSULTAR")){
-           String vectorRespuesta2 [] = gestionBaseDeDatos.Consultar();
-           if (!vectorRespuesta2.equals(null)){
-               vectorRespuesta = vectorRespuesta2;
-           }else {
-               vectorRespuesta[0] = "CONSULTA NO EXITOSA";
+       else if(solicitud.equals(SOLICITUD_ELIMINAR)){
+           if(personaDao.eliminarPersona(persona)){
+               //Registro Exitoso
+               persona.setIdentificacion(SOLICITUD_EXITOSA);
+           }else{
+               //Registro NO Exitoso
+               persona.setIdentificacion(SOLICITUD_FALLIDA);
            }
        }
-       return vectorRespuesta;
+       else if (solicitud.equals(SOLICITUD_CONSULTAR)){
+           Persona persona1 = personaDao.consultarPersona(persona);
+           persona = persona1;
+           if (persona1.getIdentificacion().equals("")){
+               persona.setIdentificacion(SOLICITUD_FALLIDA);
+           }
+       }
+       return persona;
    }
-
-
 }

@@ -1,7 +1,12 @@
 package com.example.registropersonas.presentador;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.registropersonas.modelo.controlpersonal.ControlModelo;
+import com.example.registropersonas.modelo.domain.Persona;
 import com.example.registropersonas.vista.ActualizaPersona;
 import com.example.registropersonas.vista.ConsultaRegistro;
 import com.example.registropersonas.vista.EliminaRegistro;
@@ -9,6 +14,7 @@ import com.example.registropersonas.vista.RegistroPersona;
 import com.example.registropersonas.vista.SeleccionAccion;
 
 public class Presentador extends AppCompatActivity {
+
 
     public Presentador(){
 
@@ -41,4 +47,6 @@ public class Presentador extends AppCompatActivity {
         }
         return sigPantalla;
     }
+
+
 }

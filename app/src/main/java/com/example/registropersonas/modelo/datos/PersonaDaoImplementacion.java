@@ -4,24 +4,28 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.registropersonas.modelo.datos.*;
 import com.example.registropersonas.modelo.domain.*;
 
 
-public class PersonasSqlite {
 
-    public PersonasSqlite(){
+public class PersonaDaoImplementacion implements InterfazPersonaDao {
+
+    public PersonaDaoImplementacion(){
 
     }
 
-    public Persona registrar(String identificacion, String nombres, String apellidos,
-                          String telefono, String temperatura, String rol){
+    @Override
+    public boolean registrarPersona(Persona persona){
 
-
+        String identificacion = persona.getIdentificacion();
+        String nombres = persona.getNombres();
+        String apellidos = persona.getApellidos();
+        String telefono = persona.getTelefono();
+        String temperatura = persona.getTemperatura();
+        String rol = persona.getRol();
+        boolean status = false;
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null,1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
-
-        Persona persona= new Persona();
 
         if(!identificacion.isEmpty() && !nombres.isEmpty() &&
                 !apellidos.isEmpty() && !telefono.isEmpty() &&
@@ -38,38 +42,26 @@ public class PersonasSqlite {
             long cantidad = BaseDeDatos.insert("personas", null, registro);
             BaseDeDatos.close();
             if(cantidad == 1){
-                persona.setIdentificacion(identificacion);
-                persona.setNombres(nombres);
-                persona.setApellidos(apellidos);
-                persona.setTelefono(telefono);
-                persona.setTemperatura(temperatura);
-                persona.setRol(rol);
-                //status = "Registro Exitoso";
+                //Registro Exitoso
+                status = true;
             }else{
                 //status = "Registro no exitoso";
-                persona.setIdentificacion("");
-                persona.setNombres("");
-                persona.setApellidos("");
-                persona.setTelefono("");
-                persona.setTemperatura("");
-                persona.setRol("");
+                status = false;
             }
-
         }else{
             //status = "Debes diligenciar todos los campos";
-            persona.setIdentificacion("");
-            persona.setNombres("");
-            persona.setApellidos("");
-            persona.setTelefono("");
-            persona.setTemperatura("");
-            persona.setRol("");
+            status = false;
         }
-        return persona;
+        return status;
     }
 
-    public Persona consultar(String identificacion){
+    @Override
+    public Persona consultarPersona(Persona persona2){
+
+        String identificacion = persona2.getIdentificacion();
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
         Persona persona = new Persona();
 
         if(!identificacion.isEmpty()){
@@ -84,62 +76,67 @@ public class PersonasSqlite {
                 persona.setTemperatura(fila.getString(3));
                 persona.setRol(fila.getString(4));
                 persona.setIdentificacion(identificacion);
-
+                //consulta exitosa
                 BaseDeDatos.close();
             }else{
+                //consulta no exitosa
                 persona.setNombres("");
                 persona.setApellidos("");
                 persona.setTelefono("");
                 persona.setTemperatura("");
                 persona.setRol("");
                 persona.setIdentificacion("");
-
                 BaseDeDatos.close();
             }
         }else{
+            //consulta no exitosa
             persona.setNombres("");
             persona.setApellidos("");
             persona.setTelefono("");
             persona.setTemperatura("");
             persona.setRol("");
+            persona.setIdentificacion("");
         }
         return persona;
     }
 
-    public Persona eliminar(String identificacion){
+    @Override
+    public boolean eliminarPersona(Persona persona){
+
+        boolean status = false;
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
-        Persona persona = consultar(identificacion);
+        String identificacion = persona.getIdentificacion();
 
         if(!identificacion.isEmpty()){
             int cantidad = BaseDeDatos.delete("visitantes","identificacion=" + identificacion,null);
             BaseDeDatos.close();
 
             if(cantidad == 1){
-                //Toast.makeText(this, "Registro eliminado exitosamente", Toast.LENGTH_SHORT).show();
-                persona.setNombres("");
-                persona.setApellidos("");
-                persona.setTelefono("");
-                persona.setTemperatura("");
-                persona.setRol("");
-                persona.setIdentificacion("");
+                //Registro eliminado exitosamente
+                status = true;
             }else{
-                //Toast.makeText(this, "No existe el registro", Toast.LENGTH_SHORT).show();
+                //Registro no existe
+                status = false;
             }
         }else{
-            //Toast.makeText(this, "Debes introducir el numero de identificacion", Toast.LENGTH_SHORT).show();
+            status = false;
         }
-        return persona;
+        return status;
     }
 
-    public Persona actualizar(String identificacion, String nombres, String apellidos,
-                           String telefono, String temperatura, String rol){
+    public boolean actualizarPersona(Persona persona){
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
-
-        Persona persona = new Persona();
+        String identificacion = persona.getIdentificacion();
+        String nombres = persona.getNombres();
+        String apellidos = persona.getApellidos();
+        String telefono = persona.getTelefono();
+        String temperatura = persona.getTemperatura();
+        String rol = persona.getRol();
+        boolean status = false;
 
         if(!identificacion.isEmpty() && !nombres.isEmpty() &&
                 !apellidos.isEmpty() && !telefono.isEmpty() &&
@@ -156,31 +153,16 @@ public class PersonasSqlite {
             int cantidad = BaseDeDatos.update("visitantes", registro, "identificacion=" + identificacion, null);
             BaseDeDatos.close();
             if(cantidad == 1){
-                persona.setIdentificacion(identificacion);
-                persona.setNombres(nombres);
-                persona.setApellidos(apellidos);
-                persona.setTelefono(telefono);
-                persona.setTemperatura(temperatura);
-                persona.setRol(rol);
-                //Toast.makeText(this, "Registro modificado correctamente", Toast.LENGTH_SHORT).show();
+                //Registro eliminado exitosamente
+                status = true;
             }else {
-                persona.setNombres("");
-                persona.setApellidos("");
-                persona.setTelefono("");
-                persona.setTemperatura("");
-                persona.setRol("");
-                persona.setIdentificacion("");
-                //Toast.makeText(this, "El registro no existe", Toast.LENGTH_SHORT).show();
+                //Registro no actualizado
+                status = false;
             }
         }else{
-            persona.setNombres("");
-            persona.setApellidos("");
-            persona.setTelefono("");
-            persona.setTemperatura("");
-            persona.setRol("");
-            persona.setIdentificacion("");
-            //Toast.makeText(this, "Debes introducir el número de identificacion", Toast.LENGTH_SHORT).show();
+            //Registro no actualizado
+            status = false;
         }
-        return persona;
+        return status;
     }
 }
