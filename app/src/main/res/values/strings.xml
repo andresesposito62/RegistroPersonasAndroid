@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">RegistroPersonas</string>
+    <string name="hinteditTextVacio"></string>string>
+    <string name="hinteditTextIngreseIdentificacion">Ingrese identificacion</string>string>
+    <string name="editTextUsuario"></string>string>
+    <string name="editTextPassword"></string>string>
+    <string name="botonLogin">INICIAR SESIÓN</string>string>
+    <string name="botonRestablecerContraseña">¿HAS OLVIDADO LA CONTRASEÑA?</string>string>
+    <string name="botonCrearCuentaNueva">CREAR CUENTA NUEVA</string>string>
+    <string name="textViewUsuario">Ingrese su usuario</string>string>
+    <string name="textViewPassword">Password</string>string>
+    <string name="textViewRegistrar">Registrar</string>string>
+    <string name="textViewConsultar">Consultar registro</string>string>
+    <string name="textViewEliminar">Eliminar registro</string>string>
+    <string name="textViewActualizar">Actualizar registro</string>string>
+    <string name="imageButtonRegistrar">Registrar</string>string>
+    <string name="imageButtonActualizar">Actualizar</string>string>
+    <string name="imageButtonConsultar">Consultar</string>string>
+    <string name="imageButtonEliminar">Eliminar</string>string>
+    <string name="textViewIdentificacion">Número de identificación</string>string>
+    <string name="textViewNombres">Nombres</string>string>
+    <string name="textViewApellidos">Apellidos</string>string>
+    <string name="textViewTelefono">Teléfono</string>string>
+    <string name="textViewTemperatura">Temperatura en °C</string>string>
+    <string name="textViewRol">Rol</string>string>
+    <string name="editTextIdentificacion"></string>string>
+    <string name="editTextNombres"></string>string>
+    <string name="editTextApellidos"></string>string>
+    <string name="editTextTelefono"></string><![CDATA[string>
+    string>
+    string>
+    string>
+    ]]><string name="botonEliminar">Eliminar</string>string>
+    <string name="botonActualizar">Actualizar</string><![CDATA[
+
+
+
+
+
+
+
+
+    string>
+]]>
+</resources>
