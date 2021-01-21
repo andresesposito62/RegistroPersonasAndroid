@@ -62,11 +62,12 @@ public class ControlModelo {
            }
        }
        else if (solicitud.equals(SOLICITUD_CONSULTAR)){
-           Persona persona1 = personaDao.consultarPersona(persona);
-           persona = persona1;
-           if (persona1.getIdentificacion().equals("")){
-               persona.setIdentificacion(SOLICITUD_FALLIDA);
+
+           Persona personaResult = personaDao.consultarPersona(persona);
+           if (personaResult.getIdentificacion()==""){
+               personaResult.setIdentificacion(SOLICITUD_FALLIDA);
            }
+           persona = personaResult;
        }
        return persona;
    }

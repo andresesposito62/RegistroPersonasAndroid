@@ -15,20 +15,36 @@ import com.example.registropersonas.vista.SeleccionAccion;
 
 public class Presentador extends AppCompatActivity {
 
+    private String identificacion, nombres, apellidos, telefono, temperatura, rol;
+    public static final String SOLICITUD_REGISTRAR = "REGISTRAR";
+    public static final String SOLICITUD_ACTUALIZAR = "ACTUALIZAR";
+    public static final String SOLICITUD_CONSULTAR = "CONSULTAR";
+    public static final String SOLICITUD_ELIMINAR = "ELIMINAR";
+    public static final String SOLICITUD_EXITOSA = "SOLICITUD_EXITOSA";
+    public static final String SOLICITUD_FALLIDA = "SOLICITUD_FALLIDA";
 
     public Presentador(){
 
     }
 
+    public Presentador(String identificacion, String nombres, String apellidos,
+                       String telefono, String temperatura, String rol){
+        this.identificacion = identificacion;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.temperatura = temperatura;
+        this.rol = rol;
+    }
+
     public Class siguientePantalla(String botonPresionado){
-        Presentador presentador = new Presentador();
-        Class sigPantalla = presentador.getClass();
+
+        Class sigPantalla = this.getClass();
 
         if(botonPresionado.equals("BOTON LOGIN")){
             SeleccionAccion seleccionAccion = new SeleccionAccion();
             sigPantalla = seleccionAccion.getClass();
         }
-
         if(botonPresionado.equals("BOTON REGISTRAR PERSONA")){
             RegistroPersona registroPersona = new RegistroPersona();
             sigPantalla = registroPersona.getClass();
@@ -45,8 +61,10 @@ public class Presentador extends AppCompatActivity {
             ConsultaRegistro consultaRegistro = new ConsultaRegistro();
             sigPantalla = consultaRegistro.getClass();
         }
+        if(botonPresionado.equals("BOTON REALIZAR REGISTRO")){
+            RegistroPersona registroPersona = new RegistroPersona();
+            sigPantalla = registroPersona.getClass();
+        }
         return sigPantalla;
     }
-
-
 }

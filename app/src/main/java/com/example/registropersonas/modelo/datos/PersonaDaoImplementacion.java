@@ -24,8 +24,12 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
         String temperatura = persona.getTemperatura();
         String rol = persona.getRol();
         boolean status = false;
+
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null,1);
+
+        /* Para test provisional
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
 
         if(!identificacion.isEmpty() && !nombres.isEmpty() &&
                 !apellidos.isEmpty() && !telefono.isEmpty() &&
@@ -53,6 +57,8 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             status = false;
         }
         return status;
+        Para test provisional*/
+        return true;
     }
 
     @Override
@@ -60,9 +66,12 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
 
         String identificacion = persona2.getIdentificacion();
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         Persona persona = new Persona();
+        /* Para test provisional
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
+
 
         if(!identificacion.isEmpty()){
 
@@ -97,6 +106,8 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             persona.setRol("");
             persona.setIdentificacion("");
         }
+
+        Para test provisional*/
         return persona;
     }
 
@@ -105,6 +116,8 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
 
         boolean status = false;
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
+
+        /* Para test provisional
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         String identificacion = persona.getIdentificacion();
@@ -123,13 +136,15 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
         }else{
             status = false;
         }
+
         return status;
+        Para test provisional*/
+        return  true;
     }
 
     public boolean actualizarPersona(Persona persona){
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
         String identificacion = persona.getIdentificacion();
         String nombres = persona.getNombres();
         String apellidos = persona.getApellidos();
@@ -137,6 +152,10 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
         String temperatura = persona.getTemperatura();
         String rol = persona.getRol();
         boolean status = false;
+
+        /* Para test provisional
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         if(!identificacion.isEmpty() && !nombres.isEmpty() &&
                 !apellidos.isEmpty() && !telefono.isEmpty() &&
@@ -164,5 +183,9 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             status = false;
         }
         return status;
+        Para test provisional*/
+        return true;
     }
+
+
 }

@@ -9,7 +9,7 @@
     tools:context=".vista.RegistoPersona">
 
     <Button
-        android:id="@+id/botonActualizar"
+        android:id="@+id/botonRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -17,12 +17,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:text="@string/botonActualizar"
+        android:text="@string/botonRegistrar"
         android:textColor="@color/white"
         app:backgroundTint="#144359"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerActualizacionRol" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRegistroRol" />
 
     <TextView
         android:id="@+id/textViewNombres"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIActualizacionIdentificacion" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistroIdentificacion" />
 
     <TextView
         android:id="@+id/textViewIdentificacion"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewActualizar"
+        android:id="@+id/textViewApellidos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -74,7 +74,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionNombres" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistroNombres" />
 
     <TextView
         android:id="@+id/textViewEliminar"
@@ -91,7 +91,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionApellidos" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistroApellidos" />
 
     <TextView
         android:id="@+id/textViewTemperatura"
@@ -109,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistroTelefono" />
 
     <TextView
         android:id="@+id/textViewRol"
@@ -126,10 +126,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionTemperatura" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegistroTemperatura" />
 
     <EditText
-        android:id="@+id/editTextIActualizacionIdentificacion"
+        android:id="@+id/editTextRegistroIdentificacion"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="100dp"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewIdentificacion" />
 
     <EditText
-        android:id="@+id/editTextActualizacionNombres"
+        android:id="@+id/editTextRegistroNombres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -167,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNombres" />
 
     <EditText
-        android:id="@+id/editTextActualizacionApellidos"
+        android:id="@+id/editTextRegistroApellidos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -183,10 +183,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewActualizar" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewApellidos" />
 
     <EditText
-        android:id="@+id/editTextActualizacionTelefono"
+        android:id="@+id/editTextRegistroTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -206,7 +206,7 @@
         tools:text="@string/editTextTelefono" />
 
     <EditText
-        android:id="@+id/editTextActualizacionTemperatura"
+        android:id="@+id/editTextRegistroTemperatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -224,7 +224,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTemperatura" />
 
     <Spinner
-        android:id="@+id/spinnerActualizacionRol"
+        android:id="@+id/spinnerRegistroRol"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

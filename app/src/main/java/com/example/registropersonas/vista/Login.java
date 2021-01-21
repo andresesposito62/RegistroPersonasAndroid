@@ -36,6 +36,5 @@ public class Login extends AppCompatActivity {
         else{
             Toast.makeText(this, "Debes diligenciar todos los datos", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

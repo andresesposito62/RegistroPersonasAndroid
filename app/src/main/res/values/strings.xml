@@ -26,20 +26,10 @@
     <string name="editTextIdentificacion"></string>string>
     <string name="editTextNombres"></string>string>
     <string name="editTextApellidos"></string>string>
-    <string name="editTextTelefono"></string><![CDATA[string>
-    string>
-    string>
-    string>
-    ]]><string name="botonEliminar">Eliminar</string>string>
-    <string name="botonActualizar">Actualizar</string><![CDATA[
-
-
-
-
-
-
-
-
-    string>
-]]>
+    <string name="editTextTelefono"></string>
+    <string name="botonEliminar">Eliminar</string>string>
+    <string name="botonRegistrar">Registrar</string>
+    <string name="botonActualizar">Actualizar</string>
+    <string name="botonConsultar">Consultar</string>
+    <![CDATA[string>]]>
 </resources>
