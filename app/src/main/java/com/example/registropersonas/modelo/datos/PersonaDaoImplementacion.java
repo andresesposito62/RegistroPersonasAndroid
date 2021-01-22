@@ -1,21 +1,23 @@
 package com.example.registropersonas.modelo.datos;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.registropersonas.modelo.domain.*;
-
+import com.example.registropersonas.presentador.Instruccion;
 
 
 public class PersonaDaoImplementacion implements InterfazPersonaDao {
 
-    public PersonaDaoImplementacion(){
+        public PersonaDaoImplementacion(){
 
     }
 
+
     @Override
-    public boolean registrarPersona(Persona persona){
+    public boolean registrarPersona(Persona persona) throws Exception{
 
         String identificacion = persona.getIdentificacion();
         String nombres = persona.getNombres();
@@ -25,9 +27,8 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
         String rol = persona.getRol();
         boolean status = false;
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null,1);
 
-        /* Para test provisional
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null,1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
 
@@ -56,9 +57,8 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             //status = "Debes diligenciar todos los campos";
             status = false;
         }
+
         return status;
-        Para test provisional*/
-        return true;
     }
 
     @Override

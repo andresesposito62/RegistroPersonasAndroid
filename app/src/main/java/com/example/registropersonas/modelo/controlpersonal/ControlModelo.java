@@ -19,14 +19,13 @@ public class ControlModelo {
 
    }
 
-   public ControlModelo(String identificacion, String nombres, String apellidos,
-                        String telefono, String temperatura, String rol){
-       this.identificacion = identificacion;
-       this.nombres = nombres;
-       this.apellidos = apellidos;
-       this.telefono = telefono;
-       this.temperatura = temperatura;
-       this.rol = rol;
+   public ControlModelo(Persona persona){
+       this.identificacion = persona.getIdentificacion();
+       this.nombres = persona.getNombres();
+       this.apellidos = persona.getApellidos();
+       this.telefono = persona.getTelefono();
+       this.temperatura = persona.getTemperatura();
+       this.rol = persona.getRol();
    }
 
    public Persona SolicitudBaseDeDatos(String solicitud){
@@ -35,12 +34,16 @@ public class ControlModelo {
        Persona persona = new Persona(identificacion,nombres,apellidos,telefono,temperatura,rol);
 
        if(solicitud.equals(SOLICITUD_REGISTRAR)){
-           if(personaDao.registrarPersona(persona)){
-               //Registro Exitoso
-               persona.setIdentificacion(SOLICITUD_EXITOSA);
-           }else{
-               //Registro NO Exitoso
-               persona.setIdentificacion(SOLICITUD_FALLIDA);
+           try {
+               if(personaDao.registrarPersona(persona)){
+                   //Registro Exitoso
+                   persona.setIdentificacion(SOLICITUD_EXITOSA);
+               }else{
+                   //Registro NO Exitoso
+                   persona.setIdentificacion(SOLICITUD_FALLIDA);
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
            }
        }
        else if(solicitud.equals(SOLICITUD_ACTUALIZAR)){

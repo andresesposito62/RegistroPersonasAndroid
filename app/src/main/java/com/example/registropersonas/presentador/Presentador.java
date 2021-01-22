@@ -1,15 +1,7 @@
 package com.example.registropersonas.presentador;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.registropersonas.modelo.controlpersonal.ControlModelo;
-import com.example.registropersonas.modelo.domain.Persona;
-import com.example.registropersonas.vista.ActualizaPersona;
-import com.example.registropersonas.vista.ConsultaRegistro;
-import com.example.registropersonas.vista.EliminaRegistro;
 import com.example.registropersonas.vista.RegistroPersona;
 import com.example.registropersonas.vista.SeleccionAccion;
 
@@ -37,34 +29,24 @@ public class Presentador extends AppCompatActivity {
         this.rol = rol;
     }
 
-    public Class siguientePantalla(String botonPresionado){
-
-        Class sigPantalla = this.getClass();
-
-        if(botonPresionado.equals("BOTON LOGIN")){
+    public Instruccion solicitud(Instruccion instruccion){
+        if(instruccion.getTipoInstruccion().equals("BOTON_LOGIN_PRESIONADO")){
+            instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
             SeleccionAccion seleccionAccion = new SeleccionAccion();
-            sigPantalla = seleccionAccion.getClass();
+            instruccion.setClaseSiguente(seleccionAccion.getClass());
         }
-        if(botonPresionado.equals("BOTON REGISTRAR PERSONA")){
+        else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_REGISTRAR_PERSONA_PRESIONADO")){
+            instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
             RegistroPersona registroPersona = new RegistroPersona();
-            sigPantalla = registroPersona.getClass();
+            instruccion.setClaseSiguente(registroPersona.getClass());
         }
-        if(botonPresionado.equals("BOTON ACTUALIZAR PERSONA")){
-            ActualizaPersona actualizaRegistro = new ActualizaPersona();
-            sigPantalla = actualizaRegistro.getClass();
+        else if(instruccion.getTipoInstruccion().equals("BOTON_REGISTRAR_PERSONA_PRESIONADO")){
+            instruccion.setTipoInstruccion("RECIBIR_OBJETO_PERSONA");
         }
-        if(botonPresionado.equals("BOTON ELIMINAR PERSONA")){
-            EliminaRegistro eliminaRegistro = new EliminaRegistro();
-            sigPantalla = eliminaRegistro.getClass();
+        else if(instruccion.getTipoInstruccion().equals("OBJETO_PERSONA_ENTREGADO")){
+             String resultadoInstruccion = instruccion.registraEnBD();
+             instruccion.setTipoInstruccion(resultadoInstruccion);
         }
-        if(botonPresionado.equals("BOTON CONSULTAR PERSONA")){
-            ConsultaRegistro consultaRegistro = new ConsultaRegistro();
-            sigPantalla = consultaRegistro.getClass();
-        }
-        if(botonPresionado.equals("BOTON REALIZAR REGISTRO")){
-            RegistroPersona registroPersona = new RegistroPersona();
-            sigPantalla = registroPersona.getClass();
-        }
-        return sigPantalla;
+        return instruccion;
     }
 }

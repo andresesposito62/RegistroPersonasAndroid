@@ -1,6 +1,7 @@
 package com.example.registropersonas.vista;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.registropersonas.*;
+import com.example.registropersonas.modelo.datos.AdminSQLiteOpenHelper;
+import com.example.registropersonas.presentador.Instruccion;
 import com.example.registropersonas.presentador.Presentador;
 
 public class SeleccionAccion extends AppCompatActivity {
@@ -22,34 +25,42 @@ public class SeleccionAccion extends AppCompatActivity {
 
     public void registrarPersona(View view){
 
-            Presentador presentador = new Presentador();
-            Class siguientePantalla= presentador.siguientePantalla("BOTON REGISTRAR PERSONA");
-            Intent intent = new Intent(this, siguientePantalla);
+
+
+        Presentador presentador = new Presentador();
+        Instruccion instruccion = new Instruccion();
+        instruccion.setTipoInstruccion("IMAGE_BUTTON_REGISTRAR_PERSONA_PRESIONADO");
+        instruccion = presentador.solicitud(instruccion);
+        if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
+            Intent intent = new Intent(this, instruccion.getClaseSiguente());
             startActivity(intent);
+        }
     }
 
     public void consultarPersona(View view){
-
+        /*
         Presentador presentador = new Presentador();
         Class siguientePantalla= presentador.siguientePantalla("BOTON CONSULTAR PERSONA");
         Intent intent = new Intent(this, siguientePantalla);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void actualizarPersona(View view){
-
+        /*
         Presentador presentador = new Presentador();
         Class siguientePantalla= presentador.siguientePantalla("BOTON ACTUALIZAR PERSONA");
         Intent intent = new Intent(this, siguientePantalla);
         startActivity(intent);
+        */
     }
 
     public void eliminarPersona(View view){
-
+        /*
         Presentador presentador = new Presentador();
         Class siguientePantalla= presentador.siguientePantalla("BOTON ELIMINAR PERSONA");
         Intent intent = new Intent(this, siguientePantalla);
         startActivity(intent);
+        */
     }
 
     /*

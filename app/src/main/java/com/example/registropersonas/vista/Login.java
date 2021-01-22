@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.registropersonas.*;
+import com.example.registropersonas.presentador.Instruccion;
 import com.example.registropersonas.presentador.Presentador;
 
 public class Login extends AppCompatActivity {
@@ -29,12 +30,17 @@ public class Login extends AppCompatActivity {
         String password = editTextPassword.getText().toString().trim();
         if(!usuario.isEmpty() && !password.isEmpty()){
             Presentador presentador = new Presentador();
-            Class siguientePantalla= presentador.siguientePantalla("BOTON LOGIN");
-            Intent intent = new Intent(this, siguientePantalla);
-            startActivity(intent);
+            Instruccion instruccion = new Instruccion();
+            instruccion.setTipoInstruccion("BOTON_LOGIN_PRESIONADO");
+            instruccion =presentador.solicitud(instruccion);
+            if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
+                Intent intent = new Intent(this, instruccion.getClaseSiguente());
+                startActivity(intent);
+            }
         }
         else{
             Toast.makeText(this, "Debes diligenciar todos los datos", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

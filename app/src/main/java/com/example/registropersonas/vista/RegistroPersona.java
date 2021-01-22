@@ -14,6 +14,7 @@ import com.example.registropersonas.R;
 import com.example.registropersonas.modelo.controlpersonal.ControlModelo;
 import com.example.registropersonas.modelo.datos.PersonaDaoImplementacion;
 import com.example.registropersonas.modelo.domain.Persona;
+import com.example.registropersonas.presentador.Instruccion;
 import com.example.registropersonas.presentador.Presentador;
 
 public class RegistroPersona extends AppCompatActivity {
@@ -43,7 +44,22 @@ public class RegistroPersona extends AppCompatActivity {
 
         if(!identificacion.isEmpty() && !nombres.isEmpty()&& !apellidos.isEmpty()&& !telefono.isEmpty()
                 && !temperatura.isEmpty()&& !rol.isEmpty()){
+            Presentador presentador = new Presentador();
+            Instruccion instruccion = new Instruccion();
 
+            instruccion.setTipoInstruccion("BOTON_REGISTRAR_PERSONA_PRESIONADO");
+            instruccion =presentador.solicitud(instruccion);
+            if (instruccion.getTipoInstruccion().equals("RECIBIR_OBJETO_PERSONA")){
+                Persona persona = new Persona(identificacion, nombres, apellidos,telefono,temperatura,rol);
+                instruccion.recibirObjetoPersona(persona);
+                instruccion.setTipoInstruccion("OBJETO_PERSONA_ENTREGADO");
+                instruccion = presentador.solicitud(instruccion);
+                if(instruccion.getTipoInstruccion().equals("SOLICITUD_EXITOSA")){
+                    Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                }else if(instruccion.getTipoInstruccion().equals("SOLICITUD_FALLIDA")){
+                    Toast.makeText(this, "Registro Fallido", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
         else{
             Toast.makeText(this, "Debes diligenciar todos los datos", Toast.LENGTH_SHORT).show();

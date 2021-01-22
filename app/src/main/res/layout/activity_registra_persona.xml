@@ -17,6 +17,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
+        android:onClick="registrar"
         android:text="@string/botonRegistrar"
         android:textColor="@color/white"
         app:backgroundTint="#144359"
