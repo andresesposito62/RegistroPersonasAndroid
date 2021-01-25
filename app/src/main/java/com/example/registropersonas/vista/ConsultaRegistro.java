@@ -31,21 +31,24 @@ public class ConsultaRegistro extends AppCompatActivity {
     public void consultar(View view){
 
         String identificacion = editTextIdentificacion.getText().toString().trim();
-        String nombres = editTextNombres.getText().toString().trim();
-        String apellidos = editTextApellidos.getText().toString().trim();
-        String telefono = editTextTelefono.getText().toString().trim();
-        String temperatura = editTextTemperatura.getText().toString().trim();
 
         if(!identificacion.isEmpty()){
 
-            Persona persona = new Persona(identificacion, nombres, apellidos,telefono,temperatura,rol);
-
+            Persona persona = new Persona();
+            persona.setIdentificacion(identificacion);
             Presentador presentador = new Presentador(persona);
             Instruccion instruccion = new Instruccion();
             instruccion.setTipoInstruccion("BOTON_CONSULTAR_PERSONA_PRESIONADO");
             instruccion = presentador.solicitud(instruccion, ConsultaRegistro.this);
-
-            Toast.makeText(this, instruccion.obtenerObjetoPersona().toString(), Toast.LENGTH_SHORT).show();
+            persona =  instruccion.obtenerObjetoPersona();
+            if(persona == null){
+                Toast.makeText(this, "No se encontró el registro", Toast.LENGTH_SHORT).show();
+            }
+            editTextIdentificacion.setText(persona.getIdentificacion());
+            editTextNombres.setText(persona.getNombres());
+            editTextApellidos.setText(persona.getApellidos());
+            editTextTelefono.setText(persona.getTelefono());
+            editTextTemperatura.setText(persona.getTemperatura());
         }
         else{
             Toast.makeText(this, "Debes diligenciar el número de identificación", Toast.LENGTH_SHORT).show();

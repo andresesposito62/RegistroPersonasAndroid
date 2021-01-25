@@ -33,7 +33,6 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         if(persona !=null){
-
             ContentValues registro = new ContentValues();
             registro.put("identificacion",identificacion);
             registro.put("nombres",nombres);
@@ -41,8 +40,6 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
             registro.put("telefono",telefono);
             registro.put("temperatura",temperatura);
             registro.put("rol",rol);
-
-
             registrosAfectados = BaseDeDatos.insert("personas", null, registro);
             BaseDeDatos.close();
         }
@@ -56,7 +53,6 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
         String identificacion = persona.getIdentificacion();
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, "administracion9", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
-        Persona persona2 = new Persona();
 
         if(!identificacion.isEmpty()){
 
@@ -91,7 +87,6 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
             persona.setRol("");
             persona.setIdentificacion("");
         }
-
         return persona;
     }
 
@@ -125,7 +120,6 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         if(persona !=null){
-
             ContentValues registro = new ContentValues();
             registro.put("identificacion",identificacion);
             registro.put("nombres",nombres);
@@ -133,8 +127,7 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao{
             registro.put("telefono",telefono);
             registro.put("temperatura",temperatura);
             registro.put("rol",rol);
-
-            registrosAfectados = BaseDeDatos.insert("personas", null, registro);
+            registrosAfectados = BaseDeDatos.update("personas", registro, "identificacion=" + identificacion, null);
             BaseDeDatos.close();
         }
         return registrosAfectados;

@@ -142,6 +142,8 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:text="@string/editTextConsultaIdentificacion"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIdentificacion" />
@@ -159,6 +161,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:text="@string/editTextConsultaNombres"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNombres" />
@@ -176,6 +179,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:text="@string/editTextConsultaApellidos"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewActualizar" />
@@ -193,6 +197,7 @@
         android:importantForAutofill="no"
         android:inputType="phone"
         android:text="@string/editTextConsultaTelefono"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEliminar" />
@@ -209,6 +214,7 @@
         android:hint="@string/hinteditTextVacio"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTemperatura"

@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.registropersonas.modelo.datos.PersonaDaoImplementacion;
 import com.example.registropersonas.modelo.domain.Persona;
+import com.example.registropersonas.vista.ActualizaRegistro;
 import com.example.registropersonas.vista.ConsultaRegistro;
 import com.example.registropersonas.vista.CreaRegistro;
+import com.example.registropersonas.vista.EliminaRegistro;
 import com.example.registropersonas.vista.SeleccionAccion;
 
 public class Presentador extends AppCompatActivity {
@@ -17,8 +19,8 @@ public class Presentador extends AppCompatActivity {
     public static final String SOLICITUD_ACTUALIZAR = "ACTUALIZAR";
     public static final String SOLICITUD_CONSULTAR = "CONSULTAR";
     public static final String SOLICITUD_ELIMINAR = "ELIMINAR";
-    public static final String SOLICITUD_EXITOSA = "SOLICITUD_EXITOSA";
-    public static final String SOLICITUD_FALLIDA = "SOLICITUD_FALLIDA";
+    public static final String SOLICITUD_EXITOSA = "Solicitud Exitosa";
+    public static final String SOLICITUD_FALLIDA = "Solicitud Fallida";
     Persona persona;
 
     public Presentador(){
@@ -41,11 +43,13 @@ public class Presentador extends AppCompatActivity {
             instruccion.setClaseSiguente(creaRegistro.getClass());
         }
         else if(instruccion.getTipoInstruccion().equals("BOTON_REGISTRAR_PERSONA_PRESIONADO")){
-            instruccion.setTipoInstruccion("RECIBIR_OBJETO_PERSONA");
-        }
-        else if(instruccion.getTipoInstruccion().equals("OBJETO_PERSONA_ENTREGADO")){
-             String resultadoInstruccion = instruccion.registraEnBD(context);
-             instruccion.setTipoInstruccion(resultadoInstruccion);
+            PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
+            long resultadoInstruccion = personaDaoImplementacion.registrarPersona(persona, context);
+            if(resultadoInstruccion != -1){
+                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+            }else {
+                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+            }
         }
         else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_CONSULTAR_PERSONA_PRESIONADO")){
             instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
@@ -57,7 +61,33 @@ public class Presentador extends AppCompatActivity {
             persona = personaDaoImplementacion.consultarPersona(persona, context);
             instruccion.recibirObjetoPersona(persona);
         }
-
+        else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_ELIMINAR_PERSONA_PRESIONADO")){
+            instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
+            EliminaRegistro eliminaRegistro = new EliminaRegistro();
+            instruccion.setClaseSiguente(eliminaRegistro.getClass());
+        }
+        else if(instruccion.getTipoInstruccion().equals("BOTON_ELIMINAR_PERSONA_PRESIONADO")){
+            PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
+            long resultadoInstruccion = personaDaoImplementacion.eliminarPersona(persona, context);
+            if(resultadoInstruccion != -1){
+                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+            }else {
+                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+            }
+        } else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_ACTUALIZAR_PERSONA_PRESIONADO")){
+            instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
+            ActualizaRegistro actualizaRegistro = new ActualizaRegistro();
+            instruccion.setClaseSiguente(actualizaRegistro.getClass());
+        }
+        else if(instruccion.getTipoInstruccion().equals("BOTON_ACTUALIZAR_PERSONA_PRESIONADO")){
+            PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
+            long resultadoInstruccion = personaDaoImplementacion.actualizarPersona(persona, context);
+            if(resultadoInstruccion != -1){
+                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+            }else {
+                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+            }
+        }
         return instruccion;
     }
 }

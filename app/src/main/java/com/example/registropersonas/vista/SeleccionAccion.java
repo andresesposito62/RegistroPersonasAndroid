@@ -44,37 +44,27 @@ public class SeleccionAccion extends AppCompatActivity {
             Intent intent = new Intent(this, instruccion.getClaseSiguente());
             startActivity(intent);
         }
-
     }
 
     public void actualizarPersona(View view){
-        /*
         Presentador presentador = new Presentador();
-        Class siguientePantalla= presentador.siguientePantalla("BOTON ACTUALIZAR PERSONA");
-        Intent intent = new Intent(this, siguientePantalla);
-        startActivity(intent);
-        */
+        Instruccion instruccion = new Instruccion();
+        instruccion.setTipoInstruccion("IMAGE_BUTTON_ACTUALIZAR_PERSONA_PRESIONADO");
+        instruccion = presentador.solicitud(instruccion, this);
+        if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
+            Intent intent = new Intent(this, instruccion.getClaseSiguente());
+            startActivity(intent);
+        }
     }
 
     public void eliminarPersona(View view){
-        /*
         Presentador presentador = new Presentador();
-        Class siguientePantalla= presentador.siguientePantalla("BOTON ELIMINAR PERSONA");
-        Intent intent = new Intent(this, siguientePantalla);
-        startActivity(intent);
-        */
+        Instruccion instruccion = new Instruccion();
+        instruccion.setTipoInstruccion("IMAGE_BUTTON_ELIMINAR_PERSONA_PRESIONADO");
+        instruccion = presentador.solicitud(instruccion, this);
+        if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
+            Intent intent = new Intent(this, instruccion.getClaseSiguente());
+            startActivity(intent);
+        }
     }
-
-    /*
-    public void consultarRegistro(View view){
-        Presentador presentador = new Presentador("BOTON CONSULTAR",this);
-    }
-
-    public void actualizarRegistro(View view){
-        Presentador presentador = new Presentador("BOTON ACTUALIZAR",this);
-    }
-
-    public void eliminarRegistro(View view){
-        Presentador presentador = new Presentador("BOTON ELIMINAR",this);
-    }*/
 }
