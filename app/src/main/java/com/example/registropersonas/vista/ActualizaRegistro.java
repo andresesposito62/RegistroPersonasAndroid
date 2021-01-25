@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.registropersonas.*;
 
-public class ActualizaPersona extends AppCompatActivity {
+public class ActualizaRegistro extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actualiza_persona);
+        setContentView(R.layout.activity_actualiza_registro);
     }
 }

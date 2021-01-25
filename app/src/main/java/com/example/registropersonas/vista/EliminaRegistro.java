@@ -11,6 +11,6 @@ public class EliminaRegistro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_elimina_persona);
+        setContentView(R.layout.activity_elimina_registro);
     }
 }

@@ -2,13 +2,15 @@ package com.example.registropersonas.presentador;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.registropersonas.modelo.controlpersonal.ControlModelo;
 import com.example.registropersonas.modelo.datos.PersonaDaoImplementacion;
 import com.example.registropersonas.modelo.domain.Persona;
 
 public class Instruccion {
 
-    private String tipoInstruccion, resultadoInstruccion;
+    private String tipoInstruccion;
     private Class claseSiguente;
     Persona persona;
     Context context;
@@ -21,17 +23,28 @@ public class Instruccion {
         this.tipoInstruccion = tipoInstruccion;
     }
 
-    public void recibirObjetoPersona(Persona persona){
+    public Persona recibirObjetoPersona(Persona persona){
         this.persona = persona;
+        return persona;
     }
 
-    public String registraEnBD(){
+    public Persona obtenerObjetoPersona(){
+        return persona;
+    }
+
+    public String registraEnBD(Context context){
+        /*ControlModelo controlModelo = new ControlModelo(persona);
+        persona = controlModelo.SolicitudBaseDeDatos("REGISTRAR", context);
+        String resultadoInstruccionConsulta =  persona.getIdentificacion();
+        return resultadoInstruccionConsulta;*/
+        return "";
+    }
+
+    public Persona consultaEnBD(Persona persona, Context context){
         ControlModelo controlModelo = new ControlModelo(persona);
-        Persona persona2 = controlModelo.SolicitudBaseDeDatos("REGISTRAR");
-        resultadoInstruccion =  persona2.getIdentificacion();
-        return resultadoInstruccion;
+        persona = controlModelo.SolicitudBaseDeDatos("CONSULTAR", context);
+        return persona;
     }
-
 
     public String getTipoInstruccion() {
         return tipoInstruccion;
@@ -49,11 +62,5 @@ public class Instruccion {
         this.claseSiguente = claseSiguente;
     }
 
-    public String getResultadoInstruccion() {
-        return resultadoInstruccion;
-    }
 
-    public void setResultadoInstruccion(String resultadoInstruccion) {
-        this.resultadoInstruccion = resultadoInstruccion;
-    }
 }

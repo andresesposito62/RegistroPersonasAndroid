@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_principal"
-    tools:context=".vista.ActualizaPersona">
+    tools:context=".vista.ConsultaRegistro">
 
     <Button
-        android:id="@+id/botonActualizar"
+        android:id="@+id/botonConsultar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -17,11 +17,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:text="@string/botonActualizar"
+        android:onClick="consultar"
+        android:text="@string/botonConsultarRegistro"
+        android:textColor="@color/white"
         app:backgroundTint="#144359"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerActualizacionRol" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerConsultaRol" />
 
     <TextView
         android:id="@+id/textViewNombres"
@@ -29,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="@string/textViewNombres"
@@ -39,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIActualizacionIdentificacion" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConsultaIdentificacion" />
 
     <TextView
         android:id="@+id/textViewIdentificacion"
@@ -64,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="@string/textViewApellidos"
@@ -73,7 +75,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionNombres" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConsultaNombres" />
 
     <TextView
         android:id="@+id/textViewEliminar"
@@ -81,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="@string/textViewTelefono"
@@ -90,7 +92,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionApellidos" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConsultaApellidos" />
 
     <TextView
         android:id="@+id/textViewTemperatura"
@@ -98,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="@string/textViewTemperatura"
@@ -108,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConsultaTelefono" />
 
     <TextView
         android:id="@+id/textViewRol"
@@ -116,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:text="@string/textViewRol"
@@ -125,29 +127,29 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextActualizacionTemperatura" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConsultaTemperatura" />
 
     <EditText
-        android:id="@+id/editTextIActualizacionIdentificacion"
+        android:id="@+id/editTextConsultaIdentificacion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:ems="10"
-        android:hint="@string/hinteditTextVacio"
+        android:hint="@string/hinteditTextIngreseIdentificacion"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:text="@string/editTextIdentificacion"
+        android:text="@string/editTextConsultaIdentificacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIdentificacion" />
 
     <EditText
-        android:id="@+id/editTextActualizacionNombres"
+        android:id="@+id/editTextConsultaNombres"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
@@ -156,15 +158,15 @@
         android:hint="@string/hinteditTextVacio"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/editTextNombres"
+        android:text="@string/editTextConsultaNombres"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNombres" />
 
     <EditText
-        android:id="@+id/editTextActualizacionApellidos"
+        android:id="@+id/editTextConsultaApellidos"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
@@ -173,15 +175,15 @@
         android:hint="@string/hinteditTextVacio"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/editTextApellidos"
+        android:text="@string/editTextConsultaApellidos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewActualizar" />
 
     <EditText
-        android:id="@+id/editTextActualizacionTelefono"
-        android:layout_width="207dp"
-        android:layout_height="36dp"
+        android:id="@+id/editTextConsultaTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
@@ -190,16 +192,15 @@
         android:hint="@string/hinteditTextVacio"
         android:importantForAutofill="no"
         android:inputType="phone"
-        android:text="@string/editTextTelefono"
+        android:text="@string/editTextConsultaTelefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEliminar"
-        tools:text="@string/editTextTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEliminar" />
 
     <EditText
-        android:id="@+id/editTextActualizacionTemperatura"
+        android:id="@+id/editTextConsultaTemperatura"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
@@ -210,10 +211,11 @@
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTemperatura" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTemperatura"
+        tools:text="@string/editTextConsultaTemperatura" />
 
     <Spinner
-        android:id="@+id/spinnerActualizacionRol"
+        android:id="@+id/spinnerConsultaRol"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

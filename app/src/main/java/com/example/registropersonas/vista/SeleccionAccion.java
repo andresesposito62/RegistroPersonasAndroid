@@ -25,12 +25,10 @@ public class SeleccionAccion extends AppCompatActivity {
 
     public void registrarPersona(View view){
 
-
-
         Presentador presentador = new Presentador();
         Instruccion instruccion = new Instruccion();
         instruccion.setTipoInstruccion("IMAGE_BUTTON_REGISTRAR_PERSONA_PRESIONADO");
-        instruccion = presentador.solicitud(instruccion);
+        instruccion = presentador.solicitud(instruccion, this);
         if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
             Intent intent = new Intent(this, instruccion.getClaseSiguente());
             startActivity(intent);
@@ -38,11 +36,15 @@ public class SeleccionAccion extends AppCompatActivity {
     }
 
     public void consultarPersona(View view){
-        /*
         Presentador presentador = new Presentador();
-        Class siguientePantalla= presentador.siguientePantalla("BOTON CONSULTAR PERSONA");
-        Intent intent = new Intent(this, siguientePantalla);
-        startActivity(intent);*/
+        Instruccion instruccion = new Instruccion();
+        instruccion.setTipoInstruccion("IMAGE_BUTTON_CONSULTAR_PERSONA_PRESIONADO");
+        instruccion = presentador.solicitud(instruccion, this);
+        if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
+            Intent intent = new Intent(this, instruccion.getClaseSiguente());
+            startActivity(intent);
+        }
+
     }
 
     public void actualizarPersona(View view){

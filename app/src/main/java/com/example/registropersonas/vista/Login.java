@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
             Presentador presentador = new Presentador();
             Instruccion instruccion = new Instruccion();
             instruccion.setTipoInstruccion("BOTON_LOGIN_PRESIONADO");
-            instruccion =presentador.solicitud(instruccion);
+            instruccion =presentador.solicitud(instruccion, this);
             if (instruccion.getTipoInstruccion().equals("CAMBIAR_PANTALLA")){
                 Intent intent = new Intent(this, instruccion.getClaseSiguente());
                 startActivity(intent);

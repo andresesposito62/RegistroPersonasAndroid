@@ -6,8 +6,8 @@ import com.example.registropersonas.modelo.domain.Persona;
 import com.example.registropersonas.modelo.datos.*;
 
 public interface InterfazPersonaDao {
-    public boolean registrarPersona(Persona persona) throws Exception;
-    public boolean actualizarPersona(Persona persona);
-    public boolean eliminarPersona(Persona persona);
-    public Persona consultarPersona(Persona persona);
+    public long registrarPersona(Persona persona, Context context);
+    public long actualizarPersona(Persona persona, Context context);
+    public long eliminarPersona(Persona persona, Context context);
+    public Persona consultarPersona(Persona persona, Context context);
 }

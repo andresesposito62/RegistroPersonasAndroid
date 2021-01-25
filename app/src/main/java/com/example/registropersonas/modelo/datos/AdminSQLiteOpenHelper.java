@@ -12,18 +12,12 @@ public class AdminSQLiteOpenHelper  extends SQLiteOpenHelper {
     public AdminSQLiteOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-
-
     @Override
     public void onCreate(SQLiteDatabase BaseDeDatos) {
-        //BaseDeDatos.execSQL("create table personas(id_persona INTEGER PRIMARY KEY AUTOINCREMENT, identificacion text, nombres text, apellidos text, telefono text, temperatura text, rol text)");
-        BaseDeDatos.execSQL("create table personas(id_persona int primary key, identificacion text, nombres text, apellidos text, telefono text, temperatura text, rol text)");
+        BaseDeDatos.execSQL("create table personas(id_persona integer PRIMARY KEY AUTOINCREMENT, identificacion text, nombres text, apellidos text, telefono text, temperatura text, rol text)");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
-
 }

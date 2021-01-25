@@ -5,37 +5,35 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.registropersonas.modelo.domain.*;
 import com.example.registropersonas.presentador.Instruccion;
 
 
-public class PersonaDaoImplementacion implements InterfazPersonaDao {
+public class PersonaDaoImplementacion implements InterfazPersonaDao{
 
-        public PersonaDaoImplementacion(){
+    public PersonaDaoImplementacion(){
 
     }
 
 
     @Override
-    public boolean registrarPersona(Persona persona) throws Exception{
-
+    public long registrarPersona(Persona persona, Context context) {
+        long registrosAfectados = 0;
+        //Metodo Registrar
         String identificacion = persona.getIdentificacion();
         String nombres = persona.getNombres();
-        String apellidos = persona.getApellidos();
-        String telefono = persona.getTelefono();
-        String temperatura = persona.getTemperatura();
+        String apellidos =  persona.getApellidos();
+        String telefono =  persona.getTelefono();
+        String temperatura =  persona.getTemperatura();
         String rol = persona.getRol();
-        boolean status = false;
 
-
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null,1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, "administracion9", null,1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
+        if(persona !=null){
 
-        if(!identificacion.isEmpty() && !nombres.isEmpty() &&
-                !apellidos.isEmpty() && !telefono.isEmpty() &&
-                !temperatura.isEmpty()&&
-                !rol.isEmpty()){
             ContentValues registro = new ContentValues();
             registro.put("identificacion",identificacion);
             registro.put("nombres",nombres);
@@ -44,34 +42,21 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             registro.put("temperatura",temperatura);
             registro.put("rol",rol);
 
-            long cantidad = BaseDeDatos.insert("personas", null, registro);
-            BaseDeDatos.close();
-            if(cantidad == 1){
-                //Registro Exitoso
-                status = true;
-            }else{
-                //status = "Registro no exitoso";
-                status = false;
-            }
-        }else{
-            //status = "Debes diligenciar todos los campos";
-            status = false;
-        }
 
-        return status;
+            registrosAfectados = BaseDeDatos.insert("personas", null, registro);
+            BaseDeDatos.close();
+        }
+        return registrosAfectados;
     }
 
+
     @Override
-    public Persona consultarPersona(Persona persona2){
+    public Persona consultarPersona(Persona persona, Context context){
 
-        String identificacion = persona2.getIdentificacion();
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
-
-        Persona persona = new Persona();
-        /* Para test provisional
+        String identificacion = persona.getIdentificacion();
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, "administracion9", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
-
-
+        Persona persona2 = new Persona();
 
         if(!identificacion.isEmpty()){
 
@@ -107,59 +92,39 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             persona.setIdentificacion("");
         }
 
-        Para test provisional*/
         return persona;
     }
 
     @Override
-    public boolean eliminarPersona(Persona persona){
+    public long eliminarPersona(Persona persona, Context context){
 
-        boolean status = false;
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
-
-        /* Para test provisional
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, "administracion9", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
-
+        long cantidad = 0;
         String identificacion = persona.getIdentificacion();
 
         if(!identificacion.isEmpty()){
-            int cantidad = BaseDeDatos.delete("visitantes","identificacion=" + identificacion,null);
+            cantidad = BaseDeDatos.delete("personas","identificacion=" + identificacion,null);
             BaseDeDatos.close();
-
-            if(cantidad == 1){
-                //Registro eliminado exitosamente
-                status = true;
-            }else{
-                //Registro no existe
-                status = false;
-            }
-        }else{
-            status = false;
         }
-
-        return status;
-        Para test provisional*/
-        return  true;
+        return  cantidad;
     }
 
-    public boolean actualizarPersona(Persona persona){
-
-
+    @Override
+    public long actualizarPersona(Persona persona, Context context){
+        long registrosAfectados = 0;
+        //Metodo Registrar
         String identificacion = persona.getIdentificacion();
         String nombres = persona.getNombres();
-        String apellidos = persona.getApellidos();
-        String telefono = persona.getTelefono();
-        String temperatura = persona.getTemperatura();
+        String apellidos =  persona.getApellidos();
+        String telefono =  persona.getTelefono();
+        String temperatura =  persona.getTemperatura();
         String rol = persona.getRol();
-        boolean status = false;
 
-        /* Para test provisional
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(null, "administracion", null, 1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, "administracion9", null,1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
-        if(!identificacion.isEmpty() && !nombres.isEmpty() &&
-                !apellidos.isEmpty() && !telefono.isEmpty() &&
-                !temperatura.isEmpty()){
+        if(persona !=null){
 
             ContentValues registro = new ContentValues();
             registro.put("identificacion",identificacion);
@@ -169,22 +134,10 @@ public class PersonaDaoImplementacion implements InterfazPersonaDao {
             registro.put("temperatura",temperatura);
             registro.put("rol",rol);
 
-            int cantidad = BaseDeDatos.update("visitantes", registro, "identificacion=" + identificacion, null);
+            registrosAfectados = BaseDeDatos.insert("personas", null, registro);
             BaseDeDatos.close();
-            if(cantidad == 1){
-                //Registro eliminado exitosamente
-                status = true;
-            }else {
-                //Registro no actualizado
-                status = false;
-            }
-        }else{
-            //Registro no actualizado
-            status = false;
         }
-        return status;
-        Para test provisional*/
-        return true;
+        return registrosAfectados;
     }
 
 
