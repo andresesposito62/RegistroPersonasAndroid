@@ -13,11 +13,10 @@ import com.example.registropersonas.presentador.Instruccion;
 import com.example.registropersonas.presentador.Presentador;
 
 public class ActualizaRegistro extends AppCompatActivity {
-
+    public static final String MOSTRAR_SOLICITUD_EXITOSA = "MOSTRAR_SOLICITUD_EXITOSA";
+    public static final String MOSTRAR_SOLICITUD_FALLIDA = "MOSTRAR_SOLICITUD_FALLIDA";
     EditText editTextIdentificacion, editTextNombres, editTextApellidos, editTextTelefono, editTextTemperatura; // rol;
     String rol="PARTNER";
-    public static final String SOLICITUD_EXITOSA = "Solicitud Exitosa";
-    public static final String SOLICITUD_FALLIDA = "Solicitud Fallida";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +44,15 @@ public class ActualizaRegistro extends AppCompatActivity {
             Instruccion instruccion = new Instruccion();
             instruccion.setTipoInstruccion("BOTON_ACTUALIZAR_PERSONA_PRESIONADO");
             instruccion =presentador.solicitud(instruccion, ActualizaRegistro.this);
-            if(instruccion.getTipoInstruccion().equals(SOLICITUD_EXITOSA)){
-                Toast.makeText(this, SOLICITUD_EXITOSA, Toast.LENGTH_SHORT).show();
+            if(instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_EXITOSA)){
+                Toast.makeText(this, "Registro actualizado correctamente", Toast.LENGTH_SHORT).show();
                 editTextIdentificacion.setText("");
                 editTextNombres.setText("");
                 editTextApellidos.setText("");
                 editTextTelefono.setText("");
                 editTextTemperatura.setText("");
-            } else{
-                Toast.makeText(this, SOLICITUD_FALLIDA, Toast.LENGTH_SHORT).show();
+            } else if (instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_FALLIDA)){
+                Toast.makeText(this, "No es posible actualizar el registro", Toast.LENGTH_SHORT).show();
             }
         }
         else{

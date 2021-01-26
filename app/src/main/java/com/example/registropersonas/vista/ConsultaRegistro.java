@@ -15,8 +15,11 @@ import com.example.registropersonas.presentador.Presentador;
 
 public class ConsultaRegistro extends AppCompatActivity {
 
+    public static final String MOSTRAR_SOLICITUD_EXITOSA = "MOSTRAR_SOLICITUD_EXITOSA";
+    public static final String MOSTRAR_SOLICITUD_FALLIDA = "MOSTRAR_SOLICITUD_FALLIDA";
     EditText editTextIdentificacion, editTextNombres, editTextApellidos, editTextTelefono, editTextTemperatura; // rol;
     String rol="PARTNER";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,24 +34,25 @@ public class ConsultaRegistro extends AppCompatActivity {
     public void consultar(View view){
 
         String identificacion = editTextIdentificacion.getText().toString().trim();
-
         if(!identificacion.isEmpty()){
-
             Persona persona = new Persona();
             persona.setIdentificacion(identificacion);
             Presentador presentador = new Presentador(persona);
             Instruccion instruccion = new Instruccion();
             instruccion.setTipoInstruccion("BOTON_CONSULTAR_PERSONA_PRESIONADO");
             instruccion = presentador.solicitud(instruccion, ConsultaRegistro.this);
-            persona =  instruccion.obtenerObjetoPersona();
-            if(persona == null){
-                Toast.makeText(this, "No se encontró el registro", Toast.LENGTH_SHORT).show();
+
+            if(instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_EXITOSA)){
+                persona =  instruccion.obtenerObjetoPersona();
+                editTextIdentificacion.setText(persona.getIdentificacion());
+                editTextNombres.setText(persona.getNombres());
+                editTextApellidos.setText(persona.getApellidos());
+                editTextTelefono.setText(persona.getTelefono());
+                editTextTemperatura.setText(persona.getTemperatura());
             }
-            editTextIdentificacion.setText(persona.getIdentificacion());
-            editTextNombres.setText(persona.getNombres());
-            editTextApellidos.setText(persona.getApellidos());
-            editTextTelefono.setText(persona.getTelefono());
-            editTextTemperatura.setText(persona.getTemperatura());
+            else if(instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_FALLIDA)){
+                Toast.makeText(this, "No es posible consultar el registro", Toast.LENGTH_SHORT).show();
+            }
         }
         else{
             Toast.makeText(this, "Debes diligenciar el número de identificación", Toast.LENGTH_SHORT).show();

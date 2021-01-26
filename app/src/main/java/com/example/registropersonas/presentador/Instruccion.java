@@ -13,11 +13,8 @@ public class Instruccion {
     private String tipoInstruccion;
     private Class claseSiguente;
     Persona persona;
-    Context context;
 
-    public Instruccion(){
-
-    }
+    public Instruccion(){}
 
     public Instruccion(String tipoInstruccion){
         this.tipoInstruccion = tipoInstruccion;
@@ -32,27 +29,11 @@ public class Instruccion {
         return persona;
     }
 
-    public String registraEnBD(Context context){
-        /*ControlModelo controlModelo = new ControlModelo(persona);
-        persona = controlModelo.SolicitudBaseDeDatos("REGISTRAR", context);
-        String resultadoInstruccionConsulta =  persona.getIdentificacion();
-        return resultadoInstruccionConsulta;*/
-        return "";
-    }
-
-    public Persona consultaEnBD(Persona persona, Context context){
-        ControlModelo controlModelo = new ControlModelo(persona);
-        persona = controlModelo.SolicitudBaseDeDatos("CONSULTAR", context);
-        return persona;
-    }
-
     public String getTipoInstruccion() {
         return tipoInstruccion;
     }
 
-    public void setTipoInstruccion(String tipoInstruccion) {
-        this.tipoInstruccion = tipoInstruccion;
-    }
+    public void setTipoInstruccion(String tipoInstruccion) {this.tipoInstruccion = tipoInstruccion;}
 
     public Class getClaseSiguente() {
         return claseSiguente;

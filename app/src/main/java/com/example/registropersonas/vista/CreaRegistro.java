@@ -15,10 +15,10 @@ import com.example.registropersonas.presentador.Presentador;
 
 public class CreaRegistro extends AppCompatActivity {
 
+    public static final String MOSTRAR_SOLICITUD_EXITOSA = "MOSTRAR_SOLICITUD_EXITOSA";
+    public static final String MOSTRAR_SOLICITUD_FALLIDA = "MOSTRAR_SOLICITUD_FALLIDA";
     EditText editTextIdentificacion, editTextNombres, editTextApellidos, editTextTelefono, editTextTemperatura; // rol;
     String rol="PARTNER";
-    public static final String SOLICITUD_EXITOSA = "Solicitud Exitosa";
-    public static final String SOLICITUD_FALLIDA = "Solicitud Fallida";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +46,15 @@ public class CreaRegistro extends AppCompatActivity {
             Instruccion instruccion = new Instruccion();
             instruccion.setTipoInstruccion("BOTON_REGISTRAR_PERSONA_PRESIONADO");
             instruccion =presentador.solicitud(instruccion, CreaRegistro.this);
-            if(instruccion.getTipoInstruccion().equals(SOLICITUD_EXITOSA)){
-                Toast.makeText(this, SOLICITUD_EXITOSA, Toast.LENGTH_SHORT).show();
+            if(instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_EXITOSA)){
+                Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
                 editTextIdentificacion.setText("");
                 editTextNombres.setText("");
                 editTextApellidos.setText("");
                 editTextTelefono.setText("");
                 editTextTemperatura.setText("");
-            } else{
-                Toast.makeText(this, SOLICITUD_FALLIDA, Toast.LENGTH_SHORT).show();
+            } else if (instruccion.getTipoInstruccion().equals(MOSTRAR_SOLICITUD_FALLIDA)){
+                Toast.makeText(this, "No es posible realizar el registro", Toast.LENGTH_SHORT).show();
             }
         }
         else{

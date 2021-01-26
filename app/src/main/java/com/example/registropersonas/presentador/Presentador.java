@@ -14,13 +14,8 @@ import com.example.registropersonas.vista.SeleccionAccion;
 
 public class Presentador extends AppCompatActivity {
 
-    private String identificacion, nombres, apellidos, telefono, temperatura, rol;
-    public static final String SOLICITUD_REGISTRAR = "REGISTRAR";
-    public static final String SOLICITUD_ACTUALIZAR = "ACTUALIZAR";
-    public static final String SOLICITUD_CONSULTAR = "CONSULTAR";
-    public static final String SOLICITUD_ELIMINAR = "ELIMINAR";
-    public static final String SOLICITUD_EXITOSA = "Solicitud Exitosa";
-    public static final String SOLICITUD_FALLIDA = "Solicitud Fallida";
+    public static final String MOSTRAR_SOLICITUD_EXITOSA = "MOSTRAR_SOLICITUD_EXITOSA";
+    public static final String MOSTRAR_SOLICITUD_FALLIDA = "MOSTRAR_SOLICITUD_FALLIDA";
     Persona persona;
 
     public Presentador(){
@@ -46,9 +41,9 @@ public class Presentador extends AppCompatActivity {
             PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
             long resultadoInstruccion = personaDaoImplementacion.registrarPersona(persona, context);
             if(resultadoInstruccion != -1){
-                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_EXITOSA);
             }else {
-                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_FALLIDA);
             }
         }
         else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_CONSULTAR_PERSONA_PRESIONADO")){
@@ -59,7 +54,12 @@ public class Presentador extends AppCompatActivity {
         else if(instruccion.getTipoInstruccion().equals("BOTON_CONSULTAR_PERSONA_PRESIONADO")){
             PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
             persona = personaDaoImplementacion.consultarPersona(persona, context);
-            instruccion.recibirObjetoPersona(persona);
+            if(!persona.getIdentificacion().equals("")){
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_EXITOSA);
+                instruccion.recibirObjetoPersona(persona);
+            }else{
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_FALLIDA);
+            }
         }
         else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_ELIMINAR_PERSONA_PRESIONADO")){
             instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
@@ -70,9 +70,9 @@ public class Presentador extends AppCompatActivity {
             PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
             long resultadoInstruccion = personaDaoImplementacion.eliminarPersona(persona, context);
             if(resultadoInstruccion != -1){
-                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_EXITOSA);
             }else {
-                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_FALLIDA);
             }
         } else if(instruccion.getTipoInstruccion().equals("IMAGE_BUTTON_ACTUALIZAR_PERSONA_PRESIONADO")){
             instruccion.setTipoInstruccion("CAMBIAR_PANTALLA");
@@ -83,9 +83,9 @@ public class Presentador extends AppCompatActivity {
             PersonaDaoImplementacion personaDaoImplementacion = new PersonaDaoImplementacion();
             long resultadoInstruccion = personaDaoImplementacion.actualizarPersona(persona, context);
             if(resultadoInstruccion != -1){
-                instruccion.setTipoInstruccion(SOLICITUD_EXITOSA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_EXITOSA);
             }else {
-                instruccion.setTipoInstruccion(SOLICITUD_FALLIDA);
+                instruccion.setTipoInstruccion(MOSTRAR_SOLICITUD_FALLIDA);
             }
         }
         return instruccion;
